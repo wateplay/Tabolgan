@@ -47,16 +47,17 @@
                         android:layout_height="wrap_content">
                         <ImageView
                             android:id="@+id/selectedUberX"
-                            android:src="@drawable/car_cui_select"
+                            android:src="@drawable/flat_tire"
                             android:layout_marginRight="8dp"
                             android:layout_width="60dp"
                             android:layout_height="60dp" />
-                        <ImageView
-                            android:id="@+id/selectedUberBlack"
-                            android:src="@drawable/car_vip"
-                            android:layout_marginLeft="8dp"
-                            android:layout_width="60dp"
-                            android:layout_height="60dp" />
+
+                        <!--<ImageView-->
+                            <!--android:id="@+id/selectedUberBlack"-->
+                            <!--android:src="@drawable/car_vip"-->
+                            <!--android:layout_marginLeft="8dp"-->
+                            <!--android:layout_width="60dp"-->
+                            <!--android:layout_height="60dp" />-->
                     </LinearLayout>
                     <Button
                         android:layout_below="@id/selectCardGroup"
@@ -69,7 +70,7 @@
                         android:layout_marginTop="10dp"
                         android:background="@drawable/btn_sign_in_background"
                         android:textColor="@android:color/white"
-                        android:text="@string/pickup_request"/>
+                        android:text="@string/help_request"/>
                 </RelativeLayout>
             </android.support.v7.widget.CardView>
         </RelativeLayout>

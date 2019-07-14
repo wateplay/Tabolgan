@@ -44,4 +44,5 @@
     <string name="call_driver">Llamar conductor</string>
     <string name="getting_uber">Obteniendo tu UBER&#8230;</string>
     <string name="you">Tú</string>
+    <string name="help_request">Flat Request</string>
 </resources>

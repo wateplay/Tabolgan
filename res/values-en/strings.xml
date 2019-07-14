@@ -44,4 +44,5 @@
     <string name="call_driver">Call driver</string>
     <string name="getting_uber">Getting your UBER&#8230;</string>
     <string name="you">You</string>
+    <string name="help_request">Flat Request</string>
 </resources>

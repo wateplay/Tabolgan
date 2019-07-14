@@ -15,10 +15,10 @@ import com.example.iramml.clientapp.Activities.Home;
 import com.example.iramml.clientapp.Common.Common;
 import com.example.iramml.clientapp.Model.User;
 import com.example.iramml.clientapp.R;
-import com.facebook.AccessToken;
-import com.facebook.GraphRequest;
-import com.facebook.GraphResponse;
-import com.facebook.login.LoginManager;
+//import com.facebook.AccessToken;
+//import com.facebook.GraphRequest;
+//import com.facebook.GraphResponse;
+//import com.facebook.login.LoginManager;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -265,13 +265,13 @@ public class FirebaseHelper {
                 });
             }
         });
-        alertDialog.setNegativeButton(activity.getResources().getString(R.string.cancel), new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-                LoginManager.getInstance().logOut();
-                dialogInterface.dismiss();
-            }
-        });
+//        alertDialog.setNegativeButton(activity.getResources().getString(R.string.cancel), new DialogInterface.OnClickListener() {
+//            @Override
+//            public void onClick(DialogInterface dialogInterface, int i) {
+//                LoginManager.getInstance().logOut();
+//                dialogInterface.dismiss();
+//            }
+//        });
         alertDialog.show();
     }
     public void loginSuccess(){
@@ -298,34 +298,35 @@ public class FirebaseHelper {
             }
         });
     }
-    public void registerByFacebookAccount(){
-        AccessToken accessToken = AccessToken.getCurrentAccessToken();
-        GraphRequest request = GraphRequest.newMeRequest(
-                accessToken,
-                new GraphRequest.GraphJSONObjectCallback() {
-                    @Override
-                    public void onCompleted(JSONObject object, GraphResponse response) {
-                        final String name=object.optString("name");
-                        final String id=object.optString("id");
-                        final String email=object.optString("email");
-                        final User user=new User();
-                        users.addValueEventListener(new ValueEventListener() {
-                            @Override
-                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                                User post = dataSnapshot.child(id).getValue(User.class);
 
-                                if(post==null) showRegisterPhone(user, id, name, email);
-                                else loginSuccess();
-
-                            }
-
-                            @Override
-                            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                            }
-                        });
-                    }
-                });
-        request.executeAsync();
-    }
+//    public void registerByFacebookAccount(){
+//        AccessToken accessToken = AccessToken.getCurrentAccessToken();
+//        GraphRequest request = GraphRequest.newMeRequest(
+//                accessToken,
+//                new GraphRequest.GraphJSONObjectCallback() {
+//                    @Override
+//                    public void onCompleted(JSONObject object, GraphResponse response) {
+//                        final String name=object.optString("name");
+//                        final String id=object.optString("id");
+//                        final String email=object.optString("email");
+//                        final User user=new User();
+//                        users.addValueEventListener(new ValueEventListener() {
+//                            @Override
+//                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+//                                User post = dataSnapshot.child(id).getValue(User.class);
+//
+//                                if(post==null) showRegisterPhone(user, id, name, email);
+//                                else loginSuccess();
+//
+//                            }
+//
+//                            @Override
+//                            public void onCancelled(@NonNull DatabaseError databaseError) {
+//
+//                            }
+//                        });
+//                    }
+//                });
+//        request.executeAsync();
+//    }
 }

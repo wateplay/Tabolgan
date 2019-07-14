@@ -1,8 +1,8 @@
 <resources>
     <string name="app_name">RiderApp</string>
     <string name="google_direction_api">AIzaSyDcUwk5nBq2FTZsbWDVt1gQKW1MZYw5Ioo</string>
-    <string name="facebook_app_id">2210819865853004</string>
-    <string name="fb_login_protocol_scheme">fb2210819865853004</string>
+    <!--<string name="facebook_app_id">2210819865853004</string>-->
+    <!--<string name="fb_login_protocol_scheme">fb2210819865853004</string>-->
     <string name="title_activity_main">Map</string>
     <string name="title_activity_home">Home</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
@@ -45,6 +45,7 @@
     <string name="call_driver">Call driver</string>
     <string name="getting_uber">Getting your UBER&#8230;</string>
     <string name="you">You</string>
+    <string name="help_request">Flat Request</string>
 
     <string name="channel_arrived">Arrived</string>
     <string name="channel_arrived_descrition">Driver notifications</string>

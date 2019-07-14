@@ -13,13 +13,13 @@ import com.example.iramml.clientapp.Helper.FirebaseHelper;
 import com.example.iramml.clientapp.Messages.Errors;
 import com.example.iramml.clientapp.Messages.Message;
 import com.example.iramml.clientapp.R;
-import com.facebook.AccessToken;
-import com.facebook.CallbackManager;
-import com.facebook.FacebookCallback;
-import com.facebook.FacebookException;
-import com.facebook.FacebookSdk;
-import com.facebook.login.LoginManager;
-import com.facebook.login.LoginResult;
+//import com.facebook.AccessToken;
+//import com.facebook.CallbackManager;
+//import com.facebook.FacebookCallback;
+//import com.facebook.FacebookException;
+//import com.facebook.FacebookSdk;
+//import com.facebook.login.LoginManager;
+//import com.facebook.login.LoginResult;
 import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
@@ -44,10 +44,10 @@ public class Login extends AppCompatActivity implements GoogleApiClient.OnConnec
     GoogleSignInAccount account;
 
     //facebook
-    CallbackManager mFacebookCallbackManager;
-    LoginManager mLoginManager;
-    AccessToken accessToken = AccessToken.getCurrentAccessToken();
-    boolean isLoggedIn = accessToken != null && !accessToken.isExpired();
+    //CallbackManager mFacebookCallbackManager;
+    //LoginManager mLoginManager;
+   // AccessToken accessToken = AccessToken.getCurrentAccessToken();
+   // boolean isLoggedIn = accessToken != null && !accessToken.isExpired();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,7 +55,8 @@ public class Login extends AppCompatActivity implements GoogleApiClient.OnConnec
         setContentView(R.layout.activity_login);
         firebaseHelper=new FirebaseHelper(this);
         FancyButton signInButtonGoogle=findViewById(R.id.login_button_Google);
-        FancyButton signInButtonFacebook=findViewById(R.id.facebookLogin);
+
+        // FancyButton signInButtonFacebook=findViewById(R.id.facebookLogin);
 
 
         GoogleSignInOptions gso=new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).requestEmail().build();
@@ -71,17 +72,18 @@ public class Login extends AppCompatActivity implements GoogleApiClient.OnConnec
             }
         });
 
-        setupFacebookStuff();
-        signInButtonFacebook.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (AccessToken.getCurrentAccessToken() != null){
-                    mLoginManager.logOut();
-                } else {
-                    mLoginManager.logInWithReadPermissions(Login.this, Arrays.asList("email", "user_birthday", "public_profile"));
-                }
-            }
-        });
+//        setupFacebookStuff();
+//        signInButtonFacebook.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                if (AccessToken.getCurrentAccessToken() != null){
+//                    mLoginManager.logOut();
+//                } else {
+//                    mLoginManager.logInWithReadPermissions(Login.this, Arrays.asList("email", "user_birthday", "public_profile"));
+//                }
+//            }
+//        });
+
         btnSignIn=findViewById(R.id.btnSignin);
         btnLogIn=findViewById(R.id.btnLogin);
         btnSignIn.setOnClickListener(new View.OnClickListener() {
@@ -108,10 +110,10 @@ public class Login extends AppCompatActivity implements GoogleApiClient.OnConnec
     @Override
     protected void onStart() {
         super.onStart();
-        if(isLoggedIn){
-            startActivity(new Intent(Login.this, Home.class));
-            finish();
-        }
+//        if(isLoggedIn){
+//            startActivity(new Intent(Login.this, Home.class));
+//            finish();
+//        }
         verifyGoogleAccount();
     }
 
@@ -123,7 +125,7 @@ public class Login extends AppCompatActivity implements GoogleApiClient.OnConnec
             GoogleSignInResult result=Auth.GoogleSignInApi.getSignInResultFromIntent(data);
             handleSignInResult(result);
         }
-        mFacebookCallbackManager.onActivityResult(requestCode, resultCode, data);
+        //mFacebookCallbackManager.onActivityResult(requestCode, resultCode, data);
     }
 
     private void handleSignInResult(GoogleSignInResult result) {
@@ -134,32 +136,33 @@ public class Login extends AppCompatActivity implements GoogleApiClient.OnConnec
             Message.messageError(this, Errors.ERROR_LOGIN_GOOGLE);
         }
     }
-    private void setupFacebookStuff() {
 
-        // This should normally be on your application class
-        FacebookSdk.sdkInitialize(getApplicationContext());
-
-        mLoginManager = LoginManager.getInstance();
-        mFacebookCallbackManager = CallbackManager.Factory.create();
-
-        LoginManager.getInstance().registerCallback(mFacebookCallbackManager, new FacebookCallback<LoginResult>() {
-            @Override
-            public void onSuccess(LoginResult loginResult) {
-                //login
-                firebaseHelper.registerByFacebookAccount();
-            }
-
-            @Override
-            public void onCancel() {
-                Toast.makeText(Login.this,"The login was canceled",Toast.LENGTH_SHORT).show();
-            }
-
-            @Override
-            public void onError(FacebookException error) {
-                Toast.makeText(Login.this,"There was an error in the login",Toast.LENGTH_SHORT).show();
-            }
-        });
-    }
+//    private void setupFacebookStuff() {
+//
+//        // This should normally be on your application class
+//        FacebookSdk.sdkInitialize(getApplicationContext());
+//
+//        mLoginManager = LoginManager.getInstance();
+//        mFacebookCallbackManager = CallbackManager.Factory.create();
+//
+//        LoginManager.getInstance().registerCallback(mFacebookCallbackManager, new FacebookCallback<LoginResult>() {
+//            @Override
+//            public void onSuccess(LoginResult loginResult) {
+//                //login
+//                firebaseHelper.registerByFacebookAccount();
+//            }
+//
+//            @Override
+//            public void onCancel() {
+//                Toast.makeText(Login.this,"The login was canceled",Toast.LENGTH_SHORT).show();
+//            }
+//
+//            @Override
+//            public void onError(FacebookException error) {
+//                Toast.makeText(Login.this,"There was an error in the login",Toast.LENGTH_SHORT).show();
+//            }
+//        });
+//    }
 
     @Override
     public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {

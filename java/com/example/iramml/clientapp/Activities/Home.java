@@ -38,10 +38,10 @@ import com.example.iramml.clientapp.Model.User;
 import com.example.iramml.clientapp.Model.Token;
 import com.example.iramml.clientapp.R;
 import com.example.iramml.clientapp.Util.Location;
-import com.facebook.AccessToken;
-import com.facebook.GraphRequest;
-import com.facebook.GraphResponse;
-import com.facebook.login.LoginManager;
+//import com.facebook.AccessToken;
+//import com.facebook.GraphRequest;
+//import com.facebook.GraphResponse;
+//import com.facebook.login.LoginManager;
 import com.firebase.geofire.GeoFire;
 import com.firebase.geofire.GeoLocation;
 import com.firebase.geofire.GeoQuery;
@@ -112,7 +112,8 @@ public class Home extends AppCompatActivity
     Toolbar toolbar;
     Location location=null;
     private GoogleMap mMap;
-    Marker riderMarket, destinationMarker;
+    //Marker riderMarket, destinationMarker;
+    Marker riderMarket;
     GoogleSignInAccount account;
 
     DatabaseReference drivers;
@@ -156,8 +157,8 @@ public class Home extends AppCompatActivity
     //Gooogle
     private GoogleApiClient googleApiClient;
     //Facebook
-    AccessToken accessToken = AccessToken.getCurrentAccessToken();
-    boolean isLoggedInFacebook = accessToken != null && !accessToken.isExpired();
+    //AccessToken accessToken = AccessToken.getCurrentAccessToken();
+    //boolean isLoggedInFacebook = accessToken != null && !accessToken.isExpired();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -203,7 +204,8 @@ public class Home extends AppCompatActivity
         mapFragment.getMapAsync(this);
 
         carUberX=findViewById(R.id.selectedUberX);
-        carUberBlack=findViewById(R.id.selectedUberBlack);
+
+        //carUberBlack=findViewById(R.id.selectedUberBlack);
 
         carUberX.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -212,26 +214,26 @@ public class Home extends AppCompatActivity
                 isUberX=true;
                 if(isToggle) {
                     carUberX.setImageResource(R.drawable.car_cui_select);
-                    carUberBlack.setImageResource(R.drawable.car_vip);
+                    //carUberBlack.setImageResource(R.drawable.car_vip);
                 }
                 mMap.clear();
                 loadAllAvailableDriver(new LatLng(currentLat, currentLng));
             }
         });
 
-        carUberBlack.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                boolean isToggle=isUberX;
-                isUberX=false;
-                if(isToggle) {
-                    carUberX.setImageResource(R.drawable.car_cui);
-                    carUberBlack.setImageResource(R.drawable.car_vip_select);
-                }
-                mMap.clear();
-                loadAllAvailableDriver(new LatLng(currentLat, currentLng));
-            }
-        });
+//        carUberBlack.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                boolean isToggle=isUberX;
+//                isUberX=false;
+//                if(isToggle) {
+//                    carUberX.setImageResource(R.drawable.car_cui);
+//                    carUberBlack.setImageResource(R.drawable.car_vip_select);
+//                }
+//                mMap.clear();
+//                loadAllAvailableDriver(new LatLng(currentLat, currentLng));
+//            }
+//        });
 
         btnRequestPickup=findViewById(R.id.btnPickupRequest);
         btnRequestPickup.setOnClickListener(new View.OnClickListener() {
@@ -246,7 +248,8 @@ public class Home extends AppCompatActivity
             }
         });
 
-        placeDestination=(PlaceAutocompleteFragment)getFragmentManager().findFragmentById(R.id.placeDestination);
+//        placeDestination=(PlaceAutocompleteFragment)getFragmentManager().findFragmentById(R.id.placeDestination);
+
         placeLocation=(PlaceAutocompleteFragment)getFragmentManager().findFragmentById(R.id.placeLocation);
 
         typeFilter=new AutocompleteFilter.Builder()
@@ -271,24 +274,25 @@ public class Home extends AppCompatActivity
 
             }
         });
-        placeDestination.setOnPlaceSelectedListener(new PlaceSelectionListener() {
-            @Override
-            public void onPlaceSelected(Place place) {
-                mPlaceDestination=place.getAddress().toString();
-                mMap.addMarker(new MarkerOptions().position(place.getLatLng())
-                                .icon(BitmapDescriptorFactory.fromResource(R.drawable.destination_marker))
-                                .title("Destination"));
-                mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(place.getLatLng(), 15.0f));
 
-                BottomSheetRiderFragment mBottomSheet=BottomSheetRiderFragment.newInstance(mPlaceLocation, mPlaceDestination, false);
-                mBottomSheet.show(getSupportFragmentManager(), mBottomSheet.getTag());
-            }
-
-            @Override
-            public void onError(Status status) {
-
-            }
-        });
+//        placeDestination.setOnPlaceSelectedListener(new PlaceSelectionListener() {
+//            @Override
+//            public void onPlaceSelected(Place place) {
+//                mPlaceDestination=place.getAddress().toString();
+//                mMap.addMarker(new MarkerOptions().position(place.getLatLng())
+//                                .icon(BitmapDescriptorFactory.fromResource(R.drawable.destination_marker))
+//                                .title("Destination"));
+//                mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(place.getLatLng(), 15.0f));
+//
+//                BottomSheetRiderFragment mBottomSheet=BottomSheetRiderFragment.newInstance(mPlaceLocation, mPlaceDestination, false);
+//                mBottomSheet.show(getSupportFragmentManager(), mBottomSheet.getTag());
+//            }
+//
+//            @Override
+//            public void onError(Status status) {
+//
+//            }
+//        });
 
         setUpLocation();
         updateFirebaseToken();
@@ -314,9 +318,10 @@ public class Home extends AppCompatActivity
                 !TextUtils.isEmpty(Common.currentUser.getRates()))
             tvStars.setText(Common.currentUser.getRates());
 
-        if(isLoggedInFacebook)
-            Picasso.get().load("https://graph.facebook.com/" + Common.userID + "/picture?width=500&height=500").into(imageAvatar);
-        else if(account!=null)
+//        if(isLoggedInFacebook)
+//            Picasso.get().load("https://graph.facebook.com/" + Common.userID + "/picture?width=500&height=500").into(imageAvatar);
+//        else
+        if(account!=null)
             Picasso.get().load(account.getPhotoUrl()).into(imageAvatar);
         if(Common.currentUser.getAvatarUrl()!=null &&
                 !TextUtils.isEmpty(Common.currentUser.getAvatarUrl()))
@@ -368,16 +373,16 @@ public class Home extends AppCompatActivity
         if(FirebaseAuth.getInstance().getUid()!=null) tokens.child(FirebaseAuth.getInstance().getUid()).setValue(token);
         else if(account!=null) tokens.child(account.getId()).setValue(token);
         else{
-            GraphRequest request = GraphRequest.newMeRequest(
-                    accessToken,
-                    new GraphRequest.GraphJSONObjectCallback() {
-                        @Override
-                        public void onCompleted(JSONObject object, GraphResponse response) {
-                            String id = object.optString("id");
-                            tokens.child(id).setValue(token);
-                        }
-                    });
-            request.executeAsync();
+//            GraphRequest request = GraphRequest.newMeRequest(
+//                    accessToken,
+//                    new GraphRequest.GraphJSONObjectCallback() {
+//                        @Override
+//                        public void onCompleted(JSONObject object, GraphResponse response) {
+//                            String id = object.optString("id");
+//                            tokens.child(id).setValue(token);
+//                        }
+//                    });
+//            request.executeAsync();
         }
     }
 
@@ -435,8 +440,8 @@ public class Home extends AppCompatActivity
                     findDriver();
                 }else{
                     if(!Common.driverFound) {
-                        Toast.makeText(Home.this, "No available any driver near you", Toast.LENGTH_SHORT).show();
-                        btnRequestPickup.setText("REQUEST PICKUP");
+                        Toast.makeText(Home.this, "Enggak tambal ban di sekitar", Toast.LENGTH_SHORT).show();
+                        btnRequestPickup.setText("REQUEST HELP");
                     }
                 }
 
@@ -631,12 +636,14 @@ public class Home extends AppCompatActivity
                     }
                 }
             });
-        }else if(isLoggedInFacebook){
-            LoginManager.getInstance().logOut();
-            Intent intent = new Intent(Home.this, Login.class);
-            startActivity(intent);
-            finish();
-        }else{
+        }
+//        else if(isLoggedInFacebook){
+////            LoginManager.getInstance().logOut();
+////            Intent intent = new Intent(Home.this, Login.class);
+////            startActivity(intent);
+////            finish();
+////        }
+        else{
             FirebaseAuth.getInstance().signOut();
             Intent intent=new Intent(Home.this, Login.class);
             startActivity(intent);
@@ -649,19 +656,21 @@ public class Home extends AppCompatActivity
             account = result.getSignInAccount();
             Common.userID=account.getId();
             loadUser();
-        }else if(isLoggedInFacebook){
-            GraphRequest request = GraphRequest.newMeRequest(
-                    accessToken,
-                    new GraphRequest.GraphJSONObjectCallback() {
-                        @Override
-                        public void onCompleted(JSONObject object, GraphResponse response) {
-                            String id=object.optString("id");
-                            Common.userID=id;
-                            loadUser();
-                        }
-                    });
-            request.executeAsync();
-        }else{
+        }
+//        else if(isLoggedInFacebook){
+//            GraphRequest request = GraphRequest.newMeRequest(
+//                    accessToken,
+//                    new GraphRequest.GraphJSONObjectCallback() {
+//                        @Override
+//                        public void onCompleted(JSONObject object, GraphResponse response) {
+//                            String id=object.optString("id");
+//                            Common.userID=id;
+//                            loadUser();
+//                        }
+//                    });
+//            request.executeAsync();
+//        }
+        else{
             Common.userID=FirebaseAuth.getInstance().getCurrentUser().getUid();
             loadUser();
         }
@@ -827,11 +836,11 @@ public class Home extends AppCompatActivity
         mMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
             @Override
             public void onMapClick(LatLng latLng) {
-                if(destinationMarker!=null)
-                    destinationMarker.remove();
-                destinationMarker=mMap.addMarker(new MarkerOptions().position(latLng)
-                        .icon(BitmapDescriptorFactory.fromResource(R.drawable.destination_marker))
-                        .title("Destination"));
+//                if(destinationMarker!=null)
+//                    destinationMarker.remove();
+//                destinationMarker=mMap.addMarker(new MarkerOptions().position(latLng)
+//                        .icon(BitmapDescriptorFactory.fromResource(R.drawable.destination_marker))
+//                        .title("Destination"));
                 mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 15.0f));
 
                 BottomSheetRiderFragment mBottomSheet=BottomSheetRiderFragment.newInstance(String.format("%f,%f", currentLat, currentLng),
