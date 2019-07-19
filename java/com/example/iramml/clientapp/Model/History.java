@@ -8,7 +8,8 @@ import java.util.Map;
 
 @IgnoreExtraProperties
 public class History {
-    private String startAddress,endAddress,time,distance,locationStart,locationEnd,tripDate,name;
+    //private String startAddress,endAddress,time,distance,locationStart,locationEnd,tripDate,name;
+    private String startAddress,time,locationStart,tripDate,name;
     private double total;
     public History(){
 
@@ -17,10 +18,10 @@ public class History {
     @Exclude
     public Map<String, Object> toMap(){
         HashMap<String, Object> result = new HashMap<>();
-        result.put("distance", distance);
-        result.put("endAddress", endAddress);
+        //result.put("distance", distance);
+        //result.put("endAddress", endAddress);
         result.put("time", time);
-        result.put("locationEnd", locationEnd);
+        //result.put("locationEnd", locationEnd);
         result.put("locationStart", locationStart);
         result.put("name", name);
         result.put("startAddress", startAddress);
@@ -32,11 +33,11 @@ public class History {
 
     public History(String startAddress, String endAddress, String time, String distance, String locationStart, String locationEnd, String tripDate, String name, double total) {
         this.startAddress = startAddress;
-        this.endAddress = endAddress;
+        //this.endAddress = endAddress;
         this.time = time;
-        this.distance = distance;
+        //this.distance = distance;
         this.locationStart = locationStart;
-        this.locationEnd = locationEnd;
+        //this.locationEnd = locationEnd;
         this.tripDate = tripDate;
         this.name = name;
         this.total = total;
@@ -50,13 +51,13 @@ public class History {
         this.startAddress = startAddress;
     }
 
-    public String getEndAddress() {
-        return endAddress;
-    }
+//    public String getEndAddress() {
+//        return endAddress;
+//    }
 
-    public void setEndAddress(String endAddress) {
-        this.endAddress = endAddress;
-    }
+//    public void setEndAddress(String endAddress) {
+//        this.endAddress = endAddress;
+//    }
 
     public String getTime() {
         return time;
@@ -66,13 +67,13 @@ public class History {
         this.time = time;
     }
 
-    public String getDistance() {
-        return distance;
-    }
+//    public String getDistance() {
+//        return distance;
+//    }
 
-    public void setDistance(String distance) {
-        this.distance = distance;
-    }
+//    public void setDistance(String distance) {
+//        this.distance = distance;
+//    }
 
     public String getLocationStart() {
         return locationStart;
@@ -82,13 +83,13 @@ public class History {
         this.locationStart = locationStart;
     }
 
-    public String getLocationEnd() {
-        return locationEnd;
-    }
-
-    public void setLocationEnd(String locationEnd) {
-        this.locationEnd = locationEnd;
-    }
+//    public String getLocationEnd() {
+//        return locationEnd;
+//    }
+//
+//    public void setLocationEnd(String locationEnd) {
+//        this.locationEnd = locationEnd;
+//    }
 
     public String getTripDate() {
         return tripDate;

@@ -19,7 +19,7 @@ public class Location {
     private final String permissionFineLocation=android.Manifest.permission.ACCESS_FINE_LOCATION;
     private final String permissionCoarseLocation=android.Manifest.permission.ACCESS_COARSE_LOCATION;
 
-    private final int REQUEST_CODE_LOCATION=100;
+    private final int REQUEST_CODE_LOCATION=101;
 
     private FusedLocationProviderClient fusedLocationClient;
 
