@@ -213,7 +213,7 @@ public class Home extends AppCompatActivity
                 boolean isToggle=!isUberX;
                 isUberX=true;
                 if(isToggle) {
-                    carUberX.setImageResource(R.drawable.car_cui_select);
+                    carUberX.setImageResource(R.drawable.flat_tire);
                     //carUberBlack.setImageResource(R.drawable.car_vip);
                 }
                 mMap.clear();
@@ -310,7 +310,7 @@ public class Home extends AppCompatActivity
 
         View navigationHeaderView=navigationView.getHeaderView(0);
         TextView tvName=(TextView)navigationHeaderView.findViewById(R.id.tvRiderName);
-        TextView tvStars=(TextView)findViewById(R.id.tvStars);
+        //TextView tvStars=(TextView)findViewById(R.id.tvStars);
         CircleImageView imageAvatar=(CircleImageView) navigationHeaderView.findViewById(R.id.imgAvatar);
 
         tvName.setText(Common.currentUser.getName());
@@ -388,6 +388,7 @@ public class Home extends AppCompatActivity
 
     private void requestPickup(String uid) {
         DatabaseReference dbRequest=FirebaseDatabase.getInstance().getReference(Common.pickup_request_tbl);
+
         GeoFire mGeofire=new GeoFire(dbRequest);
         mGeofire.setLocation(uid, new GeoLocation(Common.currenLocation.latitude, Common.currenLocation.longitude),
                 new GeoFire.CompletionListener() {
@@ -396,6 +397,7 @@ public class Home extends AppCompatActivity
 
                     }
                 });
+
         if (riderMarket.isVisible())riderMarket.remove();
         riderMarket=mMap.addMarker(new MarkerOptions().title(getResources().getString(R.string.pickup_here)).snippet("").position(new LatLng(Common.currenLocation.latitude, Common.currenLocation.longitude))
                 .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED)));
@@ -471,9 +473,9 @@ public class Home extends AppCompatActivity
         int id = item.getItemId();
 
         switch (id){
-            case R.id.nav_trip_history:
-                showTripHistory();
-                break;
+//            case R.id.nav_trip_history:
+//                showTripHistory();
+//                break;
             case R.id.nav_updateInformation:
                 showDialogUpdateInfo();
                 break;
@@ -487,10 +489,10 @@ public class Home extends AppCompatActivity
         return true;
     }
 
-    private void showTripHistory() {
-        Intent intent=new Intent(Home.this, TripHistory.class);
-        startActivity(intent);
-    }
+//    private void showTripHistory() {
+//        Intent intent=new Intent(Home.this, TripHistory.class);
+//        startActivity(intent);
+//    }
 
     private void showDialogUpdateInfo() {
         AlertDialog.Builder alertDialog = new AlertDialog.Builder(Home.this);

@@ -38,17 +38,17 @@
             android:orientation="horizontal"
             android:layout_height="wrap_content"
             android:gravity="center_horizontal">
-            <ImageView
-                android:layout_width="12dp"
-                android:layout_height="12dp"
-                android:backgroundTint="@android:color/white"
-                android:src="@drawable/ic_star"/>
-            <TextView
-                android:id="@+id/tvStars"
-                android:text="4.0"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="@android:color/white"/>
+            <!--<ImageView-->
+                <!--android:layout_width="12dp"-->
+                <!--android:layout_height="12dp"-->
+                <!--android:backgroundTint="@android:color/white"-->
+                <!--android:src="@drawable/ic_star"/>-->
+            <!--<TextView-->
+                <!--android:id="@+id/tvStars"-->
+                <!--android:text="4.0"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:textColor="@android:color/white"/>-->
         </LinearLayout>
     </LinearLayout>
 </LinearLayout>

@@ -4,10 +4,10 @@
     tools:showIn="navigation_view">
 
     <group android:checkableBehavior="single">
-        <item
-            android:id="@+id/nav_trip_history"
-            android:icon="@drawable/ic_trip_history"
-            android:title="Trip History" />
+        <!--<item-->
+            <!--android:id="@+id/nav_trip_history"-->
+            <!--android:icon="@drawable/ic_trip_history"-->
+            <!--android:title="Trip History" />-->
         <item
             android:id="@+id/nav_updateInformation"
             android:icon="@drawable/ic_event_note"
